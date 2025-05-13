@@ -131,28 +131,28 @@
 # print(is_palindrome(787))
 
 # 16
-def is_palindrome(n):
-    return str(n) == str(n)[::-1]
-
-
-def nearest_palindrome(n):
-    if is_palindrome(n):
-        return n
-    lower = n - 1
-    upper = n + 1
-
-    while True:
-        if is_palindrome(lower):
-            return lower
-        if is_palindrome(upper):
-            return upper
-        lower -= 1
-        upper += 1
-
-
-print(nearest_palindrome(123))
-print(nearest_palindrome(787))
-print(nearest_palindrome(1000))
+# def is_palindrome(n):
+#     return str(n) == str(n)[::-1]
+#
+#
+# def nearest_palindrome(n):
+#     if is_palindrome(n):
+#         return n
+#     lower = n - 1
+#     upper = n + 1
+#
+#     while True:
+#         if is_palindrome(lower):
+#             return lower
+#         if is_palindrome(upper):
+#             return upper
+#         lower -= 1
+#         upper += 1
+#
+#
+# print(nearest_palindrome(123))
+# print(nearest_palindrome(787))
+# print(nearest_palindrome(1000))
 
 # 17
 # def prod(n):
@@ -275,5 +275,42 @@ print(nearest_palindrome(1000))
 # print(largest("anush 45 asjsjas 96 kdks 2"))
 
 # 28
-print("hell")
+# def dict_list(l):
+#     max_v = 0
+#     max_person = None
+#     for el in l:
+#         if el['age'] > max_v:
+#             max_v = el['age']
+#             max_person = el
+#     return max_person
+#
+# print(dict_list([
+#     {'name': 'Lily', 'surname': 'Holmes', 'age': 58},
+#     {'name': 'Ani', 'surname': 'Bakunc', 'age': 79},
+#     {'name': 'Vard', 'surname': 'Caxkunc', 'age': 29}
+# ]))
 
+# 29
+# def dict_list(l):
+#     l.sort(key=lambda x: x['scores'])
+#     return l
+# print(dict_list([
+#     {'name': 'Lily', 'surname': 'Holmes', 'age': 18, 'scores': 90},
+#     {'name': 'Ani', 'surname': 'Bakunc', 'age': 19, 'scores': 92},
+#     {'name': 'Vard', 'surname': 'Caxkunc', 'age': 20, 'scores': 85}
+# ]))
+
+# 30
+# def university(dl):
+#     tmp=0
+#     anun=None
+#     for un in dl:
+#         if len(un['name'])>tmp:
+#             tmp=len(un['name'])
+#             anun=un
+#     return anun['name']
+#
+# print(university([
+#     {'name': 'HAPH GM', 'place': 'Erevan', 'was founded': 1933},
+#     {'name': 'EPH', 'place': 'Erevan', 'was founded': 1999},
+#     {'name': 'SHPH', 'place': 'Gyumri', 'was founded': 1933}]))
