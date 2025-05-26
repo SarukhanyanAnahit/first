@@ -1,0 +1,6 @@
+a : 5
+Ana : 5
+Pogos : 5
+Vard : 4
+Lisa : 4
+Nikita : 3
