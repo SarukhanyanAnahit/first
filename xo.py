@@ -5,9 +5,11 @@ def read_games(fname):
     parts = content.split('-game')
     for part in parts:
         if part.strip():
-            header, *lines = part.strip().splitlines()
+            lines = part.strip().splitlines()
+            header = lines[0]
+            board = lines[1:]  # Remaining lines after the header
             game_number = header.strip('-')
-            games[f'game{game_number}'] = lines
+            games[f'game{game_number}'] = board
     return games
 
 def horizontal_winner(board):
