@@ -7,7 +7,7 @@ def read_games(fname):
         if part.strip():
             lines = part.strip().splitlines()
             header = lines[0]
-            board = lines[1:]  # Remaining lines after the header
+            board = lines[1:] 
             game_number = header.strip('-')
             games[f'game{game_number}'] = board
     return games
