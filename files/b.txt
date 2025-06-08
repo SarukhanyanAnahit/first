@@ -1,0 +1,4 @@
+A test case in software testing is document that consists set of conditions or steps
+designed to verify if a particular feature/functionality in a software application is
+working as expected. It defines the inputs, actions, and expected results for a specific test
+scenario to ensure the software behaves correctly under various conditions.

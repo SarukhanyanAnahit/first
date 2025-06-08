@@ -1,0 +1,3 @@
+A test case typically includes information like the test case ID, description, steps, preconditions,
+input data, execution steps, expected outcome, and any post-conditions or cleanup required.
+

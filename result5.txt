@@ -1,0 +1,16 @@
+a.txt
+Test cases are essential for validating the functionality, performance,
+and reliability of software applications.
+
+b.txt
+A test case in software testing is document that consists set of conditions or steps
+designed to verify if a particular feature/functionality in a software application is
+working as expected. It defines the inputs, actions, and expected results for a specific test
+scenario to ensure the software behaves correctly under various conditions.
+
+c.txt
+A test case typically includes information like the test case ID, description, steps, preconditions,
+input data, execution steps, expected outcome, and any post-conditions or cleanup required.
+
+
+
