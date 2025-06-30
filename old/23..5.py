@@ -24,11 +24,11 @@ def up_low(mstr):
             d["vowels"] += k
         elif k.isalpha():
             d["conson"] += k
-    return "Vowels: " + d["vowels"] + "\nConsonants: " + d["conson"]
+    return d
 
 def write_into_file(fname, content):
     f = open(fname, 'a')
-    f.write(content + '\n\n')
+    f.write(str(content) + '\n\n')
 
 fil = get_cont("h.txt")
 

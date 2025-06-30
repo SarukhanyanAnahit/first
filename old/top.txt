@@ -4,3 +4,4 @@ Pogos : 5
 Vard : 4
 Lisa : 4
 Nikita : 3
+Armik : 4
