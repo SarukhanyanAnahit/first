@@ -1,0 +1,30 @@
+This type of development is often referred to as cyclical – we go ‘round the development cycle a number
+of times’, within the project. The project will have a defined timescale and cost. Within this, the cycles
+will be defined. Each cycle will also have a defined timescale and cost. The cycles are commonly referred
+to as time-boxes. For each time-box, a requirement is defined and a version of the code is produced, which
+will allow testing by the user representatives. At the end of each time-box, a decision is made on what extra
+functionality needs to be created for the next iteration. This process is then repeated until a fully working
+system has been produced.
+Some models incorporate the idea of ‘self-organising’ teams. This does not mean that the team is leaderless,
+rather that the team decides how to best manage and execute the tasks amongst themselves. This will of course
+include the relationship between testers and developers, and how defects are reported.
+A key feature of this type of development is the involvement of user representatives in the testing. Having
+the users represented throughout minimises the risk of developing an unsatisfactory product.
+The user representatives are empowered to request changes to the software, to meet their needs.
+Components or systems developed using these methods often involve overlapping and iterating test
+levels throughout development. Ideally, each feature is tested at several test levels before delivery.
+This is often facilitated by continuous delivery or deployment, enabled by making use of significant automation.
+This approach to software development can pose problems, however.
+The lack of formal documentation can make it difficult to test. To counter this, developers may use test-driven
+development (TDD). This is where functional tests are written first, and code is then created and tested. It is
+reworked until it passes the tests.
+In addition, the working environment may be such that developers make any changes required, without formally
+recording them. This approach could mean that changes cannot be traced back to the requirements, nor to the
+parts of the software that have changed. Thus, traceability as the project progresses is reduced. To mitigate
+this, a robust process must be put in place at the start of the project to manage these changes (often part of
+a configuration management process – this is discussed further in Chapter 5).
+Another issue associated with changes is the amount of testing required to ensure that implementation of the
+changes does not cause unintended changes to other parts of the software (this is called regression testing,
+discussed later in this chapter).
+Forms of iterative development include Scrum, Kanban, Spiral and the Rational Unified Process (RUP). Agile is
+an umbrella term incorporating these and other methods.
