@@ -21,7 +21,7 @@ def get_wind_speed(data):
 def get_description(data):
     return data['weather'][0]['description']
 
-av_op = {
+options_list = {
     "temperature": get_temperature,
     "feels_like": get_feels_like,
     "humidity": get_humidity,
@@ -37,33 +37,44 @@ def fetch_weather(city):
         'units': 'metric',
     }
     url = 'http://api.openweathermap.org/data/2.5/weather'
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        data = response.json()
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
 
-        with open("weather.json", "w") as f:
-            json.dump(data, f, indent=4)
-        return data
-    else:
-        return None
+            with open("weather.json", "w") as f:
+                json.dump(data, f, indent=4)
+            return data
+        else:
+            return None
+    except ModuleNotFoundError:
+        return "module not found"
+
 
 def load_weather_from_file():
-    if os.path.exists("weather.json"):
-        with open("weather.json", "r") as f:
-            return json.load(f)
-    return None
+    try:
+        if os.path.exists("weather.json"):
+            with open("weather.json", "r") as f:
+                return json.load(f)
+        return None
+    except FileNotFoundError:
+        return "file not found"
 
 
 def available_options():
     print("available options:")
-    for opt in av_op:
+    for opt in options_list:
         print(f" -{opt}")
 
-def main():
+def argums():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', help="name of city")
-    parser.add_argument('-options', choices=av_op.keys())
+    parser.add_argument('-options', choices=options_list.keys())
     args = parser.parse_args()
+    return args
+
+def main():
+    args=argums()
 
     if not args.c:
         return available_options()
@@ -71,19 +82,28 @@ def main():
     data = load_weather_from_file()
 
     if not data or data.get("name", "").lower() != args.c.lower():
-        data = fetch_weather(args.c)
+        try:
+            data = fetch_weather(args.c)
+        except:
+            print("request doesn't working")
 
     if not data:
         print("city hasn't been found.")
         return
 
     if args.options:
-        value = av_op[args.options](data)
-        print(f"{args.options.capitalize()}: {value}")
+        try:
+            value = options_list[args.options](data)
+            print(f"{args.options.capitalize()}: {value}")
+        except KeyError:
+            return "you inputted wrong key"
     else:
         print(f"weather of {args.c}:")
-        for field, func in av_op.items():
-            print(f"{field.capitalize()}: {func(data)}")
+        try:
+            for field, func in options_list.items():
+                print(f"{field.capitalize()}: {func(data)}")
+        except AttributeError:
+            return "not corresponding"
 
 if __name__ == '__main__':
     main()

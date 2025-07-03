@@ -16,11 +16,15 @@ def count(words):
             md[el]+=1
     return md
 
-def main():
-    parser=argparse.ArgumentParser()
+def arguments():
+    parser = argparse.ArgumentParser()
     parser.add_argument('fname', help='name of txt file')
     parser.add_argument('-number', type=int, help='number of pairs')
-    args=parser.parse_args()
+    args = parser.parse_args()
+    return args
+
+def main():
+    args=arguments()
 
     try:
         with open(args.fname, 'r') as f:
