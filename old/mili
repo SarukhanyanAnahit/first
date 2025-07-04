@@ -1,0 +1,95 @@
+from random import randint, shuffle
+from question import Question
+from player import Player
+import utils
+
+QUESTIONS_COUNT = 5
+
+def get_questions(fname):
+    with open(fname) as f:
+        return f.readlines()
+
+def get_random_indexes(count, qcount):
+    indexes = []
+    while len(indexes) < count:
+        ind = randint(0, qcount)
+        if ind not in indexes:
+            indexes.append(ind)
+    return indexes
+
+def get_game_questions(gq_list):
+    final_questions = []
+    for question in gq_list:
+        q, a = question.split("?")
+        q += "?"
+        variants = a.split(",")
+        c = variants[0]
+        shuffle(variants)
+        final_questions.append(Question(q, c, variants))
+    return final_questions
+
+def play(player, final_questions):
+    print("Start the game!")
+    for qobj in final_questions:
+        print(qobj)
+        ans = input("Your answer: ")
+        if ans == qobj.correct:
+            player.increment_score()
+            print("Correct. You got %d/%d" % (player.score, len(final_questions)))
+        else:
+            print("Incorrect. The correct answer was", qobj.correct)
+            print("You got %d/%d" % (player.score, len(final_questions)))
+    return player.score
+
+
+def write_top_score_board(fname, score_list):
+    with open(fname, "w") as f:
+        for uname, xp in score_list:
+            f.write(f"{uname} : {xp}\n")
+    print("Successfully saved.")
+
+def add_question(fname):
+    question = utils.compose_question()
+    with open(fname, "a") as f:
+        f.write(question + "\n")
+
+def get_dashboard(fname):
+    with open(fname) as fcursor:
+        content = fcursor.readlines()
+    players = {}
+    for line in content:
+        user, xp = line.strip().split(" : ")
+        players[user] = int(xp)
+    return players
+
+def main():
+    question_file = "questions.txt"
+    top_file = "top.txt"
+    game_mode = input("Would you like to play or add question(p/a): ")
+    if game_mode.lower() == "p":
+        username = input("Enter your username: ")
+        top_users = get_dashboard(top_file)
+        while username in top_users:
+            print("Your username already exists.")
+            ans = input("Would you like to override your score(y/n)? ")
+            if ans.lower() == "n":
+                username = input("Enter another username: ")
+            else:
+                break
+        questions = get_questions(question_file)
+        indexes = get_random_indexes(QUESTIONS_COUNT, len(questions) - 1)
+        game_questions_list = [questions[ind].strip() for ind in indexes]
+        final_questions = get_game_questions(game_questions_list)
+
+        player = Player(username)
+        xp = play(player, final_questions)
+
+        print("End of the game! Your final score is: ")
+        print("%d/%d" % (xp, len(final_questions)))
+        top_users[player.username] = xp
+        tmp = list(top_users.items())
+        tmp.sort(key=lambda x: x[1], reverse=True)
+        write_top_score_board(top_file, tmp)
+
+if __name__ == "__main__":
+    main()
